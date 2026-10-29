@@ -1,0 +1,90 @@
+name: Cross-platform build checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  tests:
+    name: Unit tests (Kotlin + Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Kotlin unit tests (desktop JVM)
+        run: ./gradlew :composeApp:desktopTest
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Python reference unit tests
+        working-directory: python_reference
+        run: python -m unittest discover -s tests -p "test_*.py"
+
+  desktop:
+    name: Desktop package (${{ matrix.os }})
+    needs: tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Package desktop app (Windows)
+        if: runner.os == 'Windows'
+        run: ./gradlew :composeApp:packageMsi
+      - name: Package desktop app (Linux)
+        if: runner.os == 'Linux'
+        run: ./gradlew :composeApp:packageDeb
+      - name: Package desktop app (macOS)
+        if: runner.os == 'macOS'
+        run: ./gradlew :composeApp:packageDmg
+
+  android:
+    name: Android debug build
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Accept licences and install Android SDK 35
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+      - name: Build Android debug APK
+        run: ./gradlew :composeApp:assembleDebug
+
+  ios:
+    name: iOS simulator compile (macOS only)
+    needs: tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compile iOS simulator target
+        run: ./gradlew :composeApp:compileKotlinIosSimulatorArm64

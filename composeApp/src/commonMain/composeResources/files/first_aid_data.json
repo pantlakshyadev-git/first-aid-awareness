@@ -1,0 +1,1183 @@
+{
+  "sources": [
+    {
+      "id": "redcross_first_aid_steps",
+      "organization": "American Red Cross",
+      "title": "First Aid Steps",
+      "purpose": "General emergency-action principles, including scene safety, checking responsiveness and breathing, recognizing life-threatening conditions, and getting emergency help.",
+      "url": "https://www.redcross.org/take-a-class/first-aid/performing-first-aid/first-aid-steps"
+    },
+    {
+      "id": "redcross_kit",
+      "organization": "American Red Cross",
+      "title": "Anatomy of a First Aid Kit",
+      "purpose": "Reference for common first-aid kit supplies and the importance of checking and replacing used or out-of-date contents.",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/anatomy-of-a-first-aid-kit.html"
+    },
+    {
+      "id": "redcross_choking",
+      "organization": "American Red Cross",
+      "title": "Adult & Child Choking",
+      "purpose": "Reference for choking awareness and emergency response.",
+      "url": "https://www.redcross.org/take-a-class/resources/learn-first-aid/adult-child-choking"
+    },
+    {
+      "id": "redcross_bleeding",
+      "organization": "American Red Cross",
+      "title": "Life-Threatening External Bleeding",
+      "purpose": "Reference for recognizing severe bleeding and appropriate emergency response.",
+      "url": "https://www.redcross.org/take-a-class/resources/learn-first-aid/bleeding-life-threatening-external"
+    },
+    {
+      "id": "redcross_burns",
+      "organization": "American Red Cross",
+      "title": "Burns",
+      "purpose": "Reference for burn awareness and when professional care may be required.",
+      "url": "https://www.redcross.org/take-a-class/resources/learn-first-aid/burns"
+    },
+    {
+      "id": "nhs_heart_attack",
+      "organization": "NHS",
+      "title": "Heart Attack",
+      "purpose": "Reference for recognizing heart-attack symptoms, the need for emergency treatment, and actions while waiting for help.",
+      "url": "https://www.nhs.uk/conditions/heart-attack/"
+    },
+    {
+      "id": "nhs_cardiac_arrest",
+      "organization": "NHS England",
+      "title": "Improving outcomes in cardiac arrest",
+      "purpose": "Reference for recognizing cardiac arrest and the importance of prompt CPR and access to an AED.",
+      "url": "https://www.england.nhs.uk/ourwork/clinical-policy/cvd/improving-outcomes-in-cardiac-arrest-tools-and-resources/"
+    },
+    {
+      "id": "india_112",
+      "organization": "Government of India — ERSS 112",
+      "title": "Emergency Response Support System",
+      "purpose": "Official reference for India's unified emergency number 112 and integrated emergency services.",
+      "url": "https://www.112.gov.in/about"
+    },
+    {
+      "id": "britishredcross_burns",
+      "organization": "British Red Cross",
+      "title": "First aid for burns",
+      "purpose": "Reference for cooling duration (at least 20 minutes) and what not to do with burns.",
+      "url": "https://www.redcross.org.uk/first-aid/learn-first-aid/burns"
+    },
+    {
+      "id": "mayo_choking",
+      "organization": "Mayo Clinic",
+      "title": "Choking: First aid",
+      "purpose": "Reference for the Red Cross 'five-and-five' back blows and abdominal thrusts approach.",
+      "url": "https://www.mayoclinic.org/first-aid/first-aid-choking/basics/art-20056637"
+    }
+  ],
+  "situations": [
+    {
+      "id": "burns",
+      "title": "Burns & Scalds",
+      "icon": "♨",
+      "summary": "Awareness pathway for common thermal burns and scalds.",
+      "search_terms": "burn scald heat hot water fire skin",
+      "assessment_intro": "Answer the questions based on what you observe. The result is an awareness pathway, not a diagnosis.",
+      "disclaimer": "For serious burns or uncertainty, seek professional medical care.",
+      "questions": [
+        {
+          "id": "severity",
+          "text": "Does the burn appear large, deep, or otherwise serious?",
+          "options": [
+            {
+              "label": "Yes / unsure",
+              "value": "serious"
+            },
+            {
+              "label": "No, it appears minor",
+              "value": "minor"
+            }
+          ]
+        },
+        {
+          "id": "location",
+          "text": "Is it on a particularly sensitive area such as the face, hands, feet, major joints, etc.?",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "sensitive"
+            },
+            {
+              "label": "No",
+              "value": "other"
+            }
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "conditions": {
+            "severity": "serious"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "location": "sensitive"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "severity": "minor",
+            "location": "other"
+          },
+          "pathway": "basic"
+        }
+      ],
+      "default_pathway": "urgent",
+      "pathways": [
+        {
+          "id": "basic",
+          "title": "Minor-burn awareness",
+          "alert": "Cool the affected area with clean, cool running water and protect it from further injury. Avoid harmful home remedies.",
+          "guidance": [
+            "Move away from the heat source if safe to do so.",
+            "Cool the burn with clean, cool running water, ideally for about 20 minutes (at least 10). Use lukewarm water if cool water is not available.",
+            "Do not use ice, ice water, butter, toothpaste or other home remedies.",
+            "Do not deliberately break blisters.",
+            "Cover/protect the area with an appropriate clean dressing if needed."
+          ],
+          "professional_help": [
+            "Seek medical advice if the burn is worsening, unusually painful, infected-looking, or you are unsure about its severity."
+          ]
+        },
+        {
+          "id": "urgent",
+          "title": "Professional assessment recommended",
+          "alert": "A serious or uncertain burn can require professional assessment.",
+          "guidance": [
+            "Move away from the source of heat if it is safe.",
+            "Start cooling the burn with clean, cool running water as soon as possible (ideally about 20 minutes) while help is arranged. Never use ice or ice water.",
+            "Do not remove clothing that is stuck to the burn.",
+            "Do not apply creams, butter, toothpaste or other home remedies.",
+            "Contact emergency/professional medical help when the injury appears serious or life-threatening."
+          ],
+          "professional_help": [
+            "Use emergency services for a life-threatening burn or associated breathing problems, major injury, or shock-like symptoms.",
+            "Seek professional assessment for large, deep, or sensitive-area burns."
+          ]
+        }
+      ],
+      "source_ids": [
+        "redcross_burns",
+        "britishredcross_burns",
+        "india_112"
+      ]
+    },
+    {
+      "id": "bleeding",
+      "title": "Severe External Bleeding",
+      "icon": "✚",
+      "summary": "Recognize potentially life-threatening external bleeding and escalate quickly.",
+      "search_terms": "bleeding blood wound severe hemorrhage",
+      "assessment_intro": "Severe bleeding can become life-threatening quickly. When in doubt, escalate.",
+      "disclaimer": "Emergency help is appropriate for life-threatening bleeding.",
+      "questions": [
+        {
+          "id": "severe",
+          "text": "Is the bleeding heavy, continuous, rapidly soaking material, or otherwise difficult to control?",
+          "options": [
+            {
+              "label": "Yes / unsure",
+              "value": "severe"
+            },
+            {
+              "label": "No",
+              "value": "not_severe"
+            }
+          ]
+        },
+        {
+          "id": "responsive",
+          "text": "Is the person responsive and breathing normally?",
+          "options": [
+            {
+              "label": "No / not sure",
+              "value": "unresponsive"
+            },
+            {
+              "label": "Yes",
+              "value": "responsive"
+            }
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "conditions": {
+            "severe": "severe"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "responsive": "unresponsive"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "severe": "not_severe",
+            "responsive": "responsive"
+          },
+          "pathway": "basic"
+        }
+      ],
+      "default_pathway": "urgent",
+      "pathways": [
+        {
+          "id": "basic",
+          "title": "Basic wound/bleeding awareness",
+          "alert": "Protect yourself from blood exposure and manage the wound with appropriate first-aid supplies.",
+          "guidance": [
+            "Use gloves or another barrier if available.",
+            "Apply appropriate direct pressure with a clean dressing for significant bleeding.",
+            "Monitor the person and the wound.",
+            "Escalate if bleeding becomes severe or cannot be controlled."
+          ],
+          "professional_help": [
+            "Seek medical care for wounds that are deep, contaminated, caused by serious injury, or not stopping bleeding."
+          ]
+        },
+        {
+          "id": "urgent",
+          "title": "Treat as an emergency",
+          "alert": "Heavy or uncontrolled bleeding can be life-threatening.",
+          "guidance": [
+            "Call 112 or ask someone to call, and have someone bring a first-aid kit if one is available. Do not delay care to look for a phone or gloves.",
+            "Cover the wound with a clean dressing, gauze or cloth and apply steady, firm direct pressure over it with your hand.",
+            "Keep up the pressure until the bleeding stops, a trained responder takes over, or help arrives.",
+            "Use a tourniquet only if you have been trained to do so.",
+            "Keep the person still and monitor them until help arrives."
+          ],
+          "professional_help": [
+            "Call 112 for urgent emergency assistance in India."
+          ]
+        }
+      ],
+      "source_ids": [
+        "redcross_bleeding",
+        "india_112"
+      ]
+    },
+    {
+      "id": "choking",
+      "title": "Choking",
+      "icon": "◉",
+      "summary": "Recognize a choking emergency and respond according to the person's condition and your training.",
+      "search_terms": "choking airway blocked breathing",
+      "assessment_intro": "Choking can become life-threatening rapidly. If the person cannot breathe normally, treat it as an emergency.",
+      "disclaimer": "Follow trained first-aid/dispatcher instructions for the person's age and condition.",
+      "questions": [
+        {
+          "id": "breathing",
+          "text": "Can the person breathe, speak or cough effectively?",
+          "options": [
+            {
+              "label": "No / ineffective",
+              "value": "blocked"
+            },
+            {
+              "label": "Yes / effective",
+              "value": "effective"
+            }
+          ]
+        },
+        {
+          "id": "responsive",
+          "text": "Is the person responsive?",
+          "options": [
+            {
+              "label": "No",
+              "value": "unresponsive"
+            },
+            {
+              "label": "Yes",
+              "value": "responsive"
+            }
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "conditions": {
+            "breathing": "blocked"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "responsive": "unresponsive"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "breathing": "effective",
+            "responsive": "responsive"
+          },
+          "pathway": "mild"
+        }
+      ],
+      "default_pathway": "urgent",
+      "pathways": [
+        {
+          "id": "mild",
+          "title": "Mild/partial obstruction awareness",
+          "alert": "If the person can cough or speak effectively, encourage effective coughing and monitor closely.",
+          "guidance": [
+            "Encourage the person to keep coughing if they can cough effectively.",
+            "Do not give food or drink while they are struggling with the obstruction.",
+            "Stay with them and be prepared to escalate if breathing becomes ineffective."
+          ],
+          "professional_help": [
+            "Seek emergency help if the obstruction worsens or the person can no longer breathe, speak or cough effectively."
+          ]
+        },
+        {
+          "id": "urgent",
+          "title": "Severe choking emergency",
+          "alert": "A person who cannot breathe, speak or cough effectively needs immediate help.",
+          "guidance": [
+            "Have someone call 112 while you help. If you are alone, start first aid first, then call.",
+            "For an adult or child over 1 year: lean the person forward and give up to 5 back blows between the shoulder blades with the heel of your hand.",
+            "If still blocked, give up to 5 abdominal thrusts: stand behind, place a fist above the belly button and pull sharply inwards and upwards. Alternate 5 blows and 5 thrusts.",
+            "If the person becomes unresponsive, lower them to the floor, call 112 and begin CPR if you are trained.",
+            "Babies under 1 year need a different technique: call 112 and follow the operator's instructions."
+          ],
+          "professional_help": [
+            "Call 112 immediately for a severe choking emergency."
+          ]
+        }
+      ],
+      "source_ids": [
+        "redcross_choking",
+        "mayo_choking",
+        "india_112"
+      ]
+    },
+    {
+      "id": "fracture",
+      "title": "Suspected Fracture / Serious Injury",
+      "icon": "⌁",
+      "summary": "Awareness pathway for suspected fractures and significant musculoskeletal injuries.",
+      "search_terms": "fracture broken bone injury fall trauma swelling",
+      "assessment_intro": "Avoid trying to diagnose a fracture yourself. Focus on safety, protection and escalation.",
+      "disclaimer": "Suspected fractures or serious injuries should be professionally assessed.",
+      "questions": [
+        {
+          "id": "serious",
+          "text": "Is there major deformity, severe pain, inability to use the limb, or another sign of serious injury?",
+          "options": [
+            {
+              "label": "Yes / unsure",
+              "value": "serious"
+            },
+            {
+              "label": "No",
+              "value": "minor"
+            }
+          ]
+        },
+        {
+          "id": "bleeding",
+          "text": "Is there heavy bleeding or another life-threatening condition?",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "conditions": {
+            "bleeding": "yes"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "serious": "serious"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "serious": "minor",
+            "bleeding": "no"
+          },
+          "pathway": "assessment"
+        }
+      ],
+      "default_pathway": "urgent",
+      "pathways": [
+        {
+          "id": "assessment",
+          "title": "Protect and arrange assessment",
+          "alert": "A suspected injury should not be forced back into position.",
+          "guidance": [
+            "Keep the injured area as still and comfortable as possible.",
+            "Avoid unnecessary movement of a potentially injured limb.",
+            "Use a cold pack wrapped in a cloth for comfort where appropriate; do not apply it directly to skin.",
+            "Arrange professional medical assessment if a fracture is suspected."
+          ],
+          "professional_help": [
+            "Seek urgent help if pain is severe, function is lost, deformity is present, or symptoms worsen."
+          ]
+        },
+        {
+          "id": "urgent",
+          "title": "Serious injury — escalate",
+          "alert": "A serious injury or heavy bleeding requires urgent professional assistance.",
+          "guidance": [
+            "Call emergency services when the injury is life-threatening or movement may be dangerous.",
+            "Do not attempt to straighten an obviously deformed body part.",
+            "Keep the person as still as practical while waiting for help, unless the environment is unsafe."
+          ],
+          "professional_help": [
+            "Call 112 for an emergency and follow dispatcher instructions."
+          ]
+        }
+      ],
+      "source_ids": [
+        "redcross_first_aid_steps",
+        "india_112"
+      ]
+    },
+    {
+      "id": "heart_attack",
+      "title": "Suspected Heart Attack",
+      "icon": "♥",
+      "summary": "Recognize warning signs and escalate promptly for emergency medical assessment.",
+      "search_terms": "heart attack chest pain pressure cardiac coronary",
+      "assessment_intro": "A heart attack is a medical emergency. The app is for recognition and escalation awareness, not diagnosis.",
+      "disclaimer": "Chest pain or other possible heart-attack symptoms require urgent professional assessment.",
+      "questions": [
+        {
+          "id": "symptoms",
+          "text": "Are there concerning symptoms such as chest pressure/pain, shortness of breath, sweating, nausea, or pain spreading to the arm, neck or jaw?",
+          "options": [
+            {
+              "label": "Yes / unsure",
+              "value": "concerning"
+            },
+            {
+              "label": "No",
+              "value": "not_concerning"
+            }
+          ]
+        },
+        {
+          "id": "responsive",
+          "text": "Is the person responsive and breathing normally?",
+          "options": [
+            {
+              "label": "No / not breathing normally",
+              "value": "critical"
+            },
+            {
+              "label": "Yes",
+              "value": "stable"
+            }
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "conditions": {
+            "responsive": "critical"
+          },
+          "pathway": "critical"
+        },
+        {
+          "conditions": {
+            "symptoms": "concerning",
+            "responsive": "stable"
+          },
+          "pathway": "urgent"
+        },
+        {
+          "conditions": {
+            "symptoms": "not_concerning",
+            "responsive": "stable"
+          },
+          "pathway": "caution"
+        }
+      ],
+      "default_pathway": "urgent",
+      "pathways": [
+        {
+          "id": "urgent",
+          "title": "Possible heart attack — emergency help",
+          "alert": "Possible heart-attack symptoms require urgent medical assessment.",
+          "guidance": [
+            "Call 112 for emergency assistance.",
+            "Keep the person resting in a comfortable position to avoid strain on the heart.",
+            "The NHS advises that, if the person is not allergic and an adult aspirin tablet is available, they may slowly chew and swallow it while waiting. Follow the emergency operator's advice.",
+            "Monitor responsiveness and breathing.",
+            "Follow the emergency operator's instructions."
+          ],
+          "professional_help": [
+            "Do not delay emergency assessment because symptoms seem mild or improve temporarily."
+          ]
+        },
+        {
+          "id": "critical",
+          "title": "Critical condition — emergency response",
+          "alert": "Unresponsiveness or abnormal breathing can indicate a life-threatening emergency.",
+          "guidance": [
+            "Call 112 immediately.",
+            "If the person is not breathing normally, begin the appropriate CPR response according to your training and emergency-dispatch instructions.",
+            "If an AED is available, have someone retrieve it and follow its prompts."
+          ],
+          "professional_help": [
+            "Emergency services should be contacted immediately."
+          ]
+        },
+        {
+          "id": "caution",
+          "title": "Symptoms not clearly suggestive — stay cautious",
+          "alert": "The absence of classic symptoms does not rule out a serious condition.",
+          "guidance": [
+            "If symptoms are new, severe, worsening or concerning, seek professional medical advice promptly.",
+            "Do not use this application to rule out a heart problem."
+          ],
+          "professional_help": [
+            "Escalate immediately if chest pain, severe breathing difficulty, collapse or other serious symptoms develop."
+          ]
+        }
+      ],
+      "source_ids": [
+        "nhs_heart_attack",
+        "india_112"
+      ]
+    },
+    {
+      "id": "cardiac_arrest",
+      "title": "Cardiac Arrest",
+      "icon": "♥",
+      "summary": "Recognize sudden collapse and abnormal/no breathing and start emergency response immediately.",
+      "search_terms": "cardiac arrest CPR AED unconscious collapse no breathing",
+      "assessment_intro": "Cardiac arrest is a time-critical emergency. Immediate emergency response is essential.",
+      "disclaimer": "CPR and AED skills should be learned through recognized first-aid/CPR training.",
+      "questions": [
+        {
+          "id": "responsive",
+          "text": "Is the person unresponsive?",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "unresponsive"
+            },
+            {
+              "label": "No",
+              "value": "responsive"
+            }
+          ]
+        },
+        {
+          "id": "breathing",
+          "text": "Are they not breathing normally or only making abnormal gasping sounds?",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "abnormal"
+            },
+            {
+              "label": "No, normal breathing",
+              "value": "normal"
+            }
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "conditions": {
+            "responsive": "unresponsive",
+            "breathing": "abnormal"
+          },
+          "pathway": "arrest"
+        },
+        {
+          "conditions": {
+            "responsive": "unresponsive",
+            "breathing": "normal"
+          },
+          "pathway": "unresponsive"
+        },
+        {
+          "conditions": {
+            "responsive": "responsive",
+            "breathing": "abnormal"
+          },
+          "pathway": "breathing_problem"
+        },
+        {
+          "conditions": {
+            "responsive": "responsive",
+            "breathing": "normal"
+          },
+          "pathway": "not_arrest"
+        }
+      ],
+      "default_pathway": "arrest",
+      "pathways": [
+        {
+          "id": "arrest",
+          "title": "Suspected cardiac arrest — act immediately",
+          "alert": "Unresponsiveness with absent or abnormal breathing should be treated as a medical emergency.",
+          "guidance": [
+            "Call 112 immediately or have someone call.",
+            "Send someone to obtain an AED if one is available nearby.",
+            "Begin CPR according to your training and the emergency operator's instructions.",
+            "Follow the AED's spoken/visual prompts when it is available."
+          ],
+          "professional_help": [
+            "Continue emergency care until trained responders take over or the person shows clear signs of recovery."
+          ]
+        },
+        {
+          "id": "unresponsive",
+          "title": "Unresponsive but breathing normally",
+          "alert": "Unresponsiveness still requires urgent assessment.",
+          "guidance": [
+            "Call 112 and follow the emergency operator's instructions.",
+            "Continue monitoring breathing and responsiveness.",
+            "Do not leave the person alone unless necessary to get emergency help."
+          ],
+          "professional_help": [
+            "Seek emergency medical assistance promptly."
+          ]
+        },
+        {
+          "id": "not_arrest",
+          "title": "Cardiac arrest not established by these answers",
+          "alert": "The answers do not fit the classic cardiac-arrest pathway, but serious symptoms still need attention.",
+          "guidance": [
+            "Continue monitoring the person.",
+            "If they become unresponsive or stop breathing normally, immediately switch to the emergency response pathway.",
+            "Use professional medical advice for concerning symptoms."
+          ],
+          "professional_help": [
+            "Escalate if the person's condition worsens or you remain concerned."
+          ]
+        },
+        {
+          "id": "breathing_problem",
+          "title": "Responsive but breathing abnormally — emergency",
+          "alert": "Abnormal breathing is serious even if the person is awake.",
+          "guidance": [
+            "Call 112 immediately.",
+            "Help the person into a comfortable position and stay with them.",
+            "If they become unresponsive and stop breathing normally, switch to the cardiac-arrest pathway and start CPR if trained."
+          ],
+          "professional_help": [
+            "Call 112 immediately for abnormal breathing."
+          ]
+        }
+      ],
+      "source_ids": [
+        "nhs_cardiac_arrest",
+        "redcross_first_aid_steps",
+        "india_112"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "fundamentals",
+      "title": "First-Aid Fundamentals",
+      "icon": "✚",
+      "summary": "Understand the purpose of first aid and the first priorities in an emergency.",
+      "sections": [
+        [
+          "What is first aid?",
+          "First aid is immediate assistance given to an ill or injured person while professional care is being arranged or until the person can receive further care."
+        ],
+        [
+          "Start with safety",
+          "Check whether the scene is safe before approaching. Avoid becoming another casualty and use barriers such as gloves when appropriate."
+        ],
+        [
+          "Recognize emergencies",
+          "Look for unresponsiveness, abnormal breathing, severe bleeding, serious injury and other signs that require emergency help."
+        ],
+        [
+          "Get help early",
+          "If a situation may be life-threatening, contact emergency services promptly and follow the operator's instructions."
+        ],
+        [
+          "Know your limits",
+          "First-aid awareness is not the same as medical diagnosis. When uncertain, choose the safer escalation path."
+        ]
+      ]
+    },
+    {
+      "id": "scene_safety",
+      "title": "Scene Safety & Response",
+      "icon": "△",
+      "summary": "A simple framework for approaching an emergency safely.",
+      "sections": [
+        [
+          "1. Danger",
+          "Look for traffic, fire, electricity, violence, hazardous substances or other ongoing danger."
+        ],
+        [
+          "2. Response",
+          "If it is safe, check whether the person responds normally."
+        ],
+        [
+          "3. Breathing",
+          "Recognize normal versus abnormal/no breathing and escalate promptly when breathing is not normal."
+        ],
+        [
+          "4. Serious bleeding",
+          "Look for heavy or uncontrolled bleeding and seek emergency help when necessary."
+        ],
+        [
+          "5. Communicate",
+          "Give emergency services the location, what happened and the person's current condition."
+        ]
+      ]
+    },
+    {
+      "id": "heart_awareness",
+      "title": "Heart Attack vs Cardiac Arrest",
+      "icon": "♥",
+      "summary": "Understand the difference between two serious but different emergencies.",
+      "sections": [
+        [
+          "Heart attack",
+          "A heart attack involves blocked blood flow to part of the heart and can cause chest pressure/pain, shortness of breath, sweating, nausea and pain spreading to the arm, neck or jaw."
+        ],
+        [
+          "Cardiac arrest",
+          "Cardiac arrest occurs when the heart suddenly stops pumping effectively. The person is typically unresponsive and not breathing normally."
+        ],
+        [
+          "Why the distinction matters",
+          "A heart attack needs urgent hospital treatment. Cardiac arrest requires immediate emergency response, CPR and an AED when available."
+        ],
+        [
+          "Key message",
+          "Do not try to diagnose either condition with this application. Recognize warning signs and escalate quickly."
+        ]
+      ]
+    },
+    {
+      "id": "bleeding_awareness",
+      "title": "Bleeding Awareness",
+      "icon": "✚",
+      "summary": "Recognize when bleeding may be life-threatening.",
+      "sections": [
+        [
+          "Minor vs severe",
+          "Small wounds and severe uncontrolled bleeding are not the same situation. Heavy or rapidly continuing bleeding should be treated as an emergency."
+        ],
+        [
+          "Protect yourself",
+          "Use gloves or another barrier when available to reduce exposure to blood."
+        ],
+        [
+          "Escalate",
+          "Call emergency services for life-threatening bleeding. Press firmly and steadily on the wound with a clean dressing or cloth until help arrives."
+        ],
+        [
+          "Review",
+          "If bleeding is not stopping, the wound is deep or serious, or you are uncertain, seek professional medical care."
+        ]
+      ]
+    },
+    {
+      "id": "burn_awareness",
+      "title": "Burn Awareness",
+      "icon": "♨",
+      "summary": "Learn basic awareness for thermal burns and when to seek medical care.",
+      "sections": [
+        [
+          "Common causes",
+          "Thermal burns can result from flames, hot liquids, hot objects or steam."
+        ],
+        [
+          "Cooling",
+          "Cool a thermal burn with clean, cool running water as soon as possible, ideally for about 20 minutes. Never use ice, and avoid home remedies such as butter or toothpaste."
+        ],
+        [
+          "Serious burns",
+          "Large, deep or sensitive-area burns can require professional assessment."
+        ],
+        [
+          "Escalate",
+          "Seek emergency help when a burn is life-threatening or associated with serious breathing problems or major injury."
+        ]
+      ]
+    }
+  ],
+  "kit_items": [
+    {
+      "id": "gloves",
+      "name": "Disposable Gloves",
+      "icon": "◌",
+      "purpose": "Provide a barrier between the first aider and bodily fluids.",
+      "what": "Single-use gloves designed for basic personal protection.",
+      "details": "They can reduce direct contact with blood and other bodily fluids during first aid.",
+      "use": "Put them on before providing care when available and appropriate; dispose of them safely after use.",
+      "precautions": "Gloves do not make contact risk zero. Perform hand hygiene as appropriate and avoid unnecessary exposure.",
+      "image": "assets/kit/gloves.png"
+    },
+    {
+      "id": "gauze",
+      "name": "Sterile Gauze Pads",
+      "icon": "▤",
+      "purpose": "Clean or cover wounds and help manage bleeding.",
+      "what": "Sterile absorbent dressings in different sizes.",
+      "details": "Gauze is a common component of first-aid kits and can support wound protection and bleeding control.",
+      "use": "Use an appropriate clean/sterile dressing according to the situation and training.",
+      "precautions": "Do not use damaged or contaminated packaging as sterile material.",
+      "image": "assets/kit/gauze.png"
+    },
+    {
+      "id": "tape",
+      "name": "Medical Tape",
+      "icon": "▱",
+      "purpose": "Secure dressings or other first-aid materials.",
+      "what": "Adhesive tape intended for first-aid use.",
+      "details": "Tape helps keep dressings in position when appropriate.",
+      "use": "Apply to secure a dressing without unnecessarily restricting circulation.",
+      "precautions": "Check the skin and avoid overly tight application.",
+      "image": "assets/kit/tape.png"
+    },
+    {
+      "id": "bandages",
+      "name": "Adhesive Bandages",
+      "icon": "＋",
+      "purpose": "Protect small superficial wounds.",
+      "what": "Small adhesive dressings in assorted sizes.",
+      "details": "They are useful for minor cuts and scrapes after appropriate cleaning and assessment.",
+      "use": "Choose a size that covers the wound area adequately and keep the dressing clean.",
+      "precautions": "Replace wet, dirty or damaged dressings and seek care when a wound is serious.",
+      "image": "assets/kit/bandages.png"
+    },
+    {
+      "id": "cold_pack",
+      "name": "Instant Cold Pack",
+      "icon": "❄",
+      "purpose": "Provide cold therapy for suitable minor injuries.",
+      "what": "A single-use pack that becomes cold when activated.",
+      "details": "Cold packs are commonly included in first-aid kits for minor injuries such as bumps or sprains.",
+      "use": "Wrap in cloth before applying to skin and use for a limited period according to the product instructions.",
+      "precautions": "Do not place directly against skin and stop if skin becomes painful or excessively numb.",
+      "image": "assets/kit/cold_pack.png"
+    },
+    {
+      "id": "triangular",
+      "name": "Triangular Bandage",
+      "icon": "△",
+      "purpose": "A versatile bandage that can support or secure an injured area.",
+      "what": "A large triangular piece of bandage material.",
+      "details": "It can be used in several first-aid applications, depending on training and the situation.",
+      "use": "Follow recognized first-aid training for its specific application.",
+      "precautions": "Do not use a bandage so tightly that it compromises circulation.",
+      "image": "assets/kit/triangular.png"
+    },
+    {
+      "id": "tweezers",
+      "name": "Tweezers",
+      "icon": "⌁",
+      "purpose": "Handle small superficial objects when appropriate.",
+      "what": "A small hand tool included in many kits.",
+      "details": "Tweezers can help with tasks such as handling small superficial splinters when this can be done safely.",
+      "use": "Keep the tool clean and use it only for appropriate superficial tasks.",
+      "precautions": "Do not dig into tissue or attempt to remove deeply embedded objects.",
+      "image": "assets/kit/tweezers.png"
+    },
+    {
+      "id": "thermometer",
+      "name": "Digital Thermometer",
+      "icon": "°",
+      "purpose": "Measure body temperature when appropriate.",
+      "what": "A non-mercury digital temperature-measuring device.",
+      "details": "A thermometer can provide useful information but does not by itself diagnose the cause of a fever or illness.",
+      "use": "Follow the manufacturer's instructions for the measurement method.",
+      "precautions": "Clean the device as recommended and interpret results in context.",
+      "image": "assets/kit/thermometer.png"
+    },
+    {
+      "id": "breathing_barrier",
+      "name": "Breathing Barrier",
+      "icon": "◉",
+      "purpose": "Provide a barrier during rescue-breathing situations when trained to use one.",
+      "what": "A protective barrier device, ideally with a one-way valve.",
+      "details": "The Red Cross includes breathing barriers among common first-aid kit contents.",
+      "use": "Use only according to recognized CPR/first-aid training and the device instructions.",
+      "precautions": "Do not let equipment delay calling emergency services or starting appropriate emergency care.",
+      "image": "assets/kit/breathing_barrier.png"
+    },
+    {
+      "id": "emergency_blanket",
+      "name": "Emergency Blanket",
+      "icon": "▰",
+      "purpose": "Help protect a person from heat loss or environmental exposure.",
+      "what": "A lightweight reflective emergency blanket.",
+      "details": "Emergency blankets are commonly included in preparedness and first-aid kits.",
+      "use": "Use according to the situation while monitoring the person's condition.",
+      "precautions": "Do not let the blanket obscure injuries or interfere with monitoring and care.",
+      "image": "assets/kit/emergency_blanket.png"
+    }
+  ],
+  "quiz_questions": [
+    {
+      "category": "First Aid",
+      "question": "What should you check before approaching an emergency scene?",
+      "options": [
+        "Whether the scene is safe for you and the person",
+        "How many bystanders are available to take photos",
+        "Whether the person looks like someone you know",
+        "Which hospital is the closest to the scene"
+      ],
+      "answer": "Whether the scene is safe for you and the person",
+      "explanation": "Check for danger first. If you become a casualty too, you cannot help anyone."
+    },
+    {
+      "category": "Emergency Awareness",
+      "question": "Which number is India's unified national emergency number?",
+      "options": [
+        "100 (police only)",
+        "101 (fire only)",
+        "112",
+        "911"
+      ],
+      "answer": "112",
+      "explanation": "112 is India's unified emergency number (ERSS 112) for police, fire and ambulance. 911 is the US number."
+    },
+    {
+      "category": "First Aid",
+      "question": "What is a major warning sign that bleeding may be life-threatening?",
+      "options": [
+        "Heavy, continuous or spurting blood",
+        "Blood that dries within a few minutes",
+        "A small amount of blood on a clean cloth",
+        "Slight redness around a small scratch"
+      ],
+      "answer": "Heavy, continuous or spurting blood",
+      "explanation": "The Red Cross says to look at the amount of blood and how it flows. Continuous or spurting flow is a sign of life-threatening bleeding."
+    },
+    {
+      "category": "Heart Awareness",
+      "question": "How is cardiac arrest different from a heart attack?",
+      "options": [
+        "In cardiac arrest the heart suddenly stops pumping effectively",
+        "A heart attack means the heart has completely stopped",
+        "Cardiac arrest is a mild condition that passes with rest",
+        "Cardiac arrest only happens during hard exercise"
+      ],
+      "answer": "In cardiac arrest the heart suddenly stops pumping effectively",
+      "explanation": "A heart attack is blocked blood flow to the heart. In cardiac arrest the heart stops pumping effectively and the person is unresponsive and not breathing normally."
+    },
+    {
+      "category": "Heart Awareness",
+      "question": "What should happen promptly when cardiac arrest is suspected?",
+      "options": [
+        "Call emergency services and begin CPR if trained",
+        "Wait a few minutes to see whether they recover",
+        "Give them water and let them sit up slowly",
+        "Drive them to a clinic yourself without calling"
+      ],
+      "answer": "Call emergency services and begin CPR if trained",
+      "explanation": "Cardiac arrest is time-critical. Early CPR and an AED improve the chance of survival."
+    },
+    {
+      "category": "First-Aid Kit",
+      "question": "Why should a first-aid kit be checked regularly?",
+      "options": [
+        "To replace used or out-of-date contents",
+        "Because all supplies must be replaced monthly regardless of use",
+        "To make it look newer",
+        "Because kits only work for a week"
+      ],
+      "answer": "To replace used or out-of-date contents",
+      "explanation": "Supplies get used up, damaged or go out of date, so a kit is only useful if it is checked and restocked."
+    },
+    {
+      "category": "First-Aid Kit",
+      "question": "What is a common purpose of disposable gloves?",
+      "options": [
+        "Provide a barrier from blood and bodily fluids",
+        "Keep the first aider's hands warm in cold weather",
+        "Stop bleeding by squeezing the wound tightly",
+        "Measure a person's pulse more accurately"
+      ],
+      "answer": "Provide a barrier from blood and bodily fluids",
+      "explanation": "Gloves reduce direct contact with blood. They do not make the risk zero, so wash your hands afterwards."
+    },
+    {
+      "category": "Burns",
+      "question": "For a minor thermal burn, what is commonly recommended?",
+      "options": [
+        "Clean, cool running water",
+        "Ice packed directly on the burn",
+        "A thick layer of butter or oil",
+        "Toothpaste spread over the area"
+      ],
+      "answer": "Clean, cool running water",
+      "explanation": "Cool running water starts cooling the skin. Ice, butter and toothpaste are not recommended."
+    },
+    {
+      "category": "Choking",
+      "question": "If a choking person can cough forcefully, what is the right response?",
+      "options": [
+        "Encourage them to keep coughing and monitor",
+        "Immediately give abdominal thrusts",
+        "Give them a drink to wash it down",
+        "Lay them flat on their back at once"
+      ],
+      "answer": "Encourage them to keep coughing and monitor",
+      "explanation": "Forceful coughing may clear the blockage. Step in only if they can no longer cough, speak or breathe."
+    },
+    {
+      "category": "Emergency Awareness",
+      "question": "What should you do if a situation may be life-threatening?",
+      "options": [
+        "Contact emergency services promptly",
+        "Search the app first to confirm the problem",
+        "Wait and see whether it gets better",
+        "Ask a friend online what they would do"
+      ],
+      "answer": "Contact emergency services promptly",
+      "explanation": "This app is educational. Do not spend time navigating it when professional help is needed."
+    },
+    {
+      "category": "Burns",
+      "question": "For how long should a burn ideally be cooled under cool running water?",
+      "options": [
+        "About 20 minutes",
+        "About 30 seconds",
+        "Until it stops being red",
+        "It should not be cooled"
+      ],
+      "answer": "About 20 minutes",
+      "explanation": "The Red Cross Scientific Advisory Council advises at least 10 minutes, ideally 20 minutes. The British Red Cross says at least 20."
+    },
+    {
+      "category": "First Aid",
+      "question": "What is the most important first action for life-threatening bleeding?",
+      "options": [
+        "Press firmly on the wound with a clean dressing or cloth",
+        "Rinse the wound under a tap until it stops",
+        "Wait until gloves or a first-aid kit arrive",
+        "Remove the cloth every minute to check it"
+      ],
+      "answer": "Press firmly on the wound with a clean dressing or cloth",
+      "explanation": "The Red Cross says to get pressure on the bleeding right away. Do not delay care to look for gloves or a phone."
+    },
+    {
+      "category": "Choking",
+      "question": "What does the Red Cross 'five-and-five' approach for a severely choking adult involve?",
+      "options": [
+        "5 back blows, then 5 abdominal thrusts, repeated",
+        "5 chest compressions, then 5 rescue breaths",
+        "5 sips of water, then 5 minutes of rest",
+        "5 slaps on the chest, then wait for help"
+      ],
+      "answer": "5 back blows, then 5 abdominal thrusts, repeated",
+      "explanation": "Alternate 5 back blows and 5 abdominal thrusts until the blockage clears or the person becomes unresponsive."
+    },
+    {
+      "category": "Heart Awareness",
+      "question": "Which is a common symptom of a heart attack?",
+      "options": [
+        "Chest pressure, heaviness or tightness",
+        "A mild itch that fades within minutes",
+        "A runny nose with watery eyes",
+        "Hunger pangs soon after eating"
+      ],
+      "answer": "Chest pressure, heaviness or tightness",
+      "explanation": "Pain can also spread to the arm, neck or jaw, with sweating, nausea or breathlessness. Symptoms vary between people."
+    },
+    {
+      "category": "Heart Awareness",
+      "question": "What is an AED?",
+      "options": [
+        "A device that gives spoken steps and can shock the heart",
+        "A digital thermometer used to check for fever",
+        "A special bandage for holding dressings on joints",
+        "A monitor that measures blood sugar and insulin"
+      ],
+      "answer": "A device that gives spoken steps and can shock the heart",
+      "explanation": "An automated external defibrillator guides rescuers with voice prompts. Send someone to fetch one while you start CPR."
+    },
+    {
+      "category": "Heart Awareness",
+      "question": "Which combination suggests possible cardiac arrest?",
+      "options": [
+        "Unresponsive and not breathing normally",
+        "Responsive but short of breath after running",
+        "Alert and talking, with a mild headache",
+        "Drowsy but breathing normally after a long day"
+      ],
+      "answer": "Unresponsive and not breathing normally",
+      "explanation": "Occasional gasping is not normal breathing. Treat it as an emergency and call 112."
+    },
+    {
+      "category": "Burns",
+      "question": "Which of these should you NOT use to cool a burn?",
+      "options": [
+        "Ice or ice water",
+        "Clean, cool running water",
+        "Clean lukewarm water when cool water is unavailable",
+        "A clean cool compress when no water is available"
+      ],
+      "answer": "Ice or ice water",
+      "explanation": "The Red Cross advises never using ice, ice water or a freezing compress on a burn."
+    },
+    {
+      "category": "Emergency Awareness",
+      "question": "What should you tell the emergency operator?",
+      "options": [
+        "Your location, what happened and the person's condition",
+        "Only the person's name and your own phone number",
+        "Nothing until the ambulance has arrived",
+        "Only what you think the diagnosis is"
+      ],
+      "answer": "Your location, what happened and the person's condition",
+      "explanation": "Clear information helps the operator send the right help. Follow their instructions."
+    },
+    {
+      "category": "First-Aid Kit",
+      "question": "Why should a cold pack be wrapped in cloth before use?",
+      "options": [
+        "So it does not touch the skin directly",
+        "So the pack lasts longer on the shelf",
+        "So the pack becomes colder than normal",
+        "Wrapping is not needed if the pack feels soft"
+      ],
+      "answer": "So it does not touch the skin directly",
+      "explanation": "Direct contact can hurt the skin. Stop if the skin becomes painful or very numb."
+    },
+    {
+      "category": "First Aid",
+      "question": "What should you do with a suspected broken limb that looks deformed?",
+      "options": [
+        "Keep it still and do not try to straighten it",
+        "Gently pull it straight before moving the person",
+        "Ask the person to walk on it to test it",
+        "Rub the area firmly to reduce swelling"
+      ],
+      "answer": "Keep it still and do not try to straighten it",
+      "explanation": "Moving or straightening an injured limb can cause more harm. Keep it supported and arrange professional assessment."
+    }
+  ]
+}

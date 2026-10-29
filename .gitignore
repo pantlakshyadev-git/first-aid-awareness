@@ -1,0 +1,29 @@
+# Gradle / build output
+.gradle/
+build/
+**/build/
+local.properties
+*.apk
+*.aab
+
+# IDE files (machine specific, contain local paths)
+.idea/
+*.iml
+.kotlin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Xcode
+xcuserdata/
+DerivedData/
+
+# Signing keys (never upload these)
+*.jks
+*.keystore
+keystore.properties
