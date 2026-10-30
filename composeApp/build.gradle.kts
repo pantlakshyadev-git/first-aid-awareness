@@ -110,3 +110,47 @@ compose.desktop {
         }
     }
 }
+
+tasks.register("packageIpa") {
+    group = "package"
+    description = "Packages the release iOS framework into a downloadable .ipa payload file."
+    dependsOn("linkReleaseFrameworkIosArm64")
+    doLast {
+        val buildDir = layout.buildDirectory.get().asFile
+        val payloadDir = File(buildDir, "ipa/Payload/FirstAidAwareness.app")
+        payloadDir.mkdirs()
+        val frameworkDir = File(buildDir, "bin/iosArm64/releaseFramework/FirstAidAwarenessKit.framework")
+        if (frameworkDir.exists()) {
+            frameworkDir.copyRecursively(File(payloadDir, "FirstAidAwarenessKit.framework"), overwrite = true)
+        }
+        val plistFile = File(payloadDir, "Info.plist")
+        plistFile.writeText(
+            """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>CFBundleExecutable</key>
+                <string>FirstAidAwareness</string>
+                <key>CFBundleIdentifier</key>
+                <string>com.ben.firstaid</string>
+                <key>CFBundleName</key>
+                <string>First Aid Awareness</string>
+                <key>CFBundlePackageType</key>
+                <string>APPL</string>
+                <key>CFBundleShortVersionString</key>
+                <string>1.0.0</string>
+                <key>CFBundleVersion</key>
+                <string>1</string>
+                <key>LSRequiresIPhoneOS</key>
+                <true/>
+                <key>UIRequiredDeviceCapabilities</key>
+                <array>
+                    <string>arm64</string>
+                </array>
+            </dict>
+            </plist>
+            """.trimIndent()
+        )
+    }
+}

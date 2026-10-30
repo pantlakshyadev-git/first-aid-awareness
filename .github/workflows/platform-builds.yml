@@ -76,7 +76,7 @@ jobs:
         run: ./gradlew :composeApp:assembleDebug
 
   ios:
-    name: iOS simulator compile (macOS only)
+    name: iOS app build (.ipa package)
     needs: tests
     runs-on: macos-latest
     steps:
@@ -86,5 +86,47 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - name: Compile iOS simulator target
-        run: ./gradlew :composeApp:compileKotlinIosSimulatorArm64
+      - name: Build iOS Release Framework
+        run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64
+      - name: Create iOS App Bundle & IPA Package
+        run: |
+          mkdir -p Payload/FirstAidAwareness.app
+          cp -R composeApp/build/bin/iosArm64/releaseFramework/FirstAidAwarenessKit.framework Payload/FirstAidAwareness.app/
+          cat << 'EOF' > Payload/FirstAidAwareness.app/Info.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>CFBundleExecutable</key>
+              <string>FirstAidAwareness</string>
+              <key>CFBundleIdentifier</key>
+              <string>com.ben.firstaid</string>
+              <key>CFBundleName</key>
+              <string>First Aid Awareness</string>
+              <key>CFBundlePackageType</key>
+              <string>APPL</string>
+              <key>CFBundleShortVersionString</key>
+              <string>1.0.0</string>
+              <key>CFBundleVersion</key>
+              <string>1</string>
+              <key>LSRequiresIPhoneOS</key>
+              <true/>
+              <key>UIRequiredDeviceCapabilities</key>
+              <array>
+                  <string>arm64</string>
+              </array>
+              <key>UISupportedInterfaceOrientations</key>
+              <array>
+                  <string>UIInterfaceOrientationPortrait</string>
+                  <string>UIInterfaceOrientationLandscapeLeft</string>
+                  <string>UIInterfaceOrientationLandscapeRight</string>
+              </array>
+          </dict>
+          </plist>
+          EOF
+          zip -r FirstAidAwareness-iOS.ipa Payload
+      - name: Upload iOS .ipa Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FirstAidAwareness-iOS.ipa
+          path: FirstAidAwareness-iOS.ipa

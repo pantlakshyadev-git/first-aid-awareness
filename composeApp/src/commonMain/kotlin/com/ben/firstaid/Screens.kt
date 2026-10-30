@@ -368,9 +368,11 @@ internal fun SearchScreen(state: AppState) {
                 unfocusedBorderColor = CardBorder,
             ),
         )
-        Row(
+        OptIn(ExperimentalLayoutApi::class)
+        FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             FilterChip(
                 selected = selectedFilter == null,

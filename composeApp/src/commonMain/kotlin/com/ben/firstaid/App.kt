@@ -92,21 +92,40 @@ fun App() {
 @Composable
 private fun StartupMessage(loading: Boolean, problems: List<String>) {
     Box(
-        Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing),
+        Modifier
+            .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing),
         contentAlignment = Alignment.Center,
     ) {
         Column(
-            Modifier.padding(24.dp).verticalScroll(rememberScrollState()),
+            Modifier
+                .padding(24.dp)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text("First Aid Awareness", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.headlineSmall, color = AppBlue)
+            Text(
+                "First Aid Awareness",
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineSmall,
+                color = AppBlue,
+            )
             if (loading) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(
+                    color = AppBlue,
+                )
             } else {
-                Text("The bundled first-aid data could not be loaded or failed validation. Please reinstall the app.")
+                Text(
+                    "The bundled first-aid data could not be loaded or failed validation. Please reinstall the app.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.error,
+                )
                 problems.forEach { Text("\u2022 $it", style = MaterialTheme.typography.bodySmall) }
-                Text("In an emergency, call $EMERGENCY_NUMBER.", fontWeight = FontWeight.Bold)
+                Text(
+                    "In an emergency, call $EMERGENCY_NUMBER.",
+                    fontWeight = FontWeight.Bold,
+                    color = EmergencyRed,
+                )
             }
         }
     }
@@ -192,16 +211,24 @@ private fun TopBar(state: AppState) {
                     .clickable(role = Role.Button) { state.openTab(Screen.Home) }
                     .padding(horizontal = 8.dp, vertical = 4.dp),
             ) {
-                Text(
-                    tr("First Aid Awareness"),
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Text(
-                    tr("LEARN  ·  ASSIST  ·  ESCALATE"),
-                    color = Color(0xFFD7EEF3),
-                    style = MaterialTheme.typography.labelSmall,
-                )
+                if (state.current == Screen.Home) {
+                    Text(
+                        tr("First Aid Awareness"),
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    Text(
+                        tr("LEARN  ·  ASSIST  ·  ESCALATE"),
+                        color = Color(0xFFD7EEF3),
+                        style = MaterialTheme.typography.labelSmall,
+                    )
+                } else {
+                    Text(
+                        tr(state.current.title),
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                }
             }
             if (state.hasHindi) {
                 Surface(
