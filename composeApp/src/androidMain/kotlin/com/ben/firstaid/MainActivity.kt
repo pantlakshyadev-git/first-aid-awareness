@@ -9,11 +9,12 @@ import androidx.activity.enableEdgeToEdge
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Android 15 (targetSdk 35) always draws edge-to-edge. Light icons on the blue top bar,
-        // dark icons on the light bottom bar.
+        // Android 15 (targetSdk 35) always draws edge-to-edge. Light icons on the teal top bar.
+        // The bottom bar follows the device theme here; once the app has drawn,
+        // SystemBarsEffect (Platform.android.kt) re-applies it for the theme chosen in Settings.
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
         )
         super.onCreate(savedInstanceState)
         setContent { App() }

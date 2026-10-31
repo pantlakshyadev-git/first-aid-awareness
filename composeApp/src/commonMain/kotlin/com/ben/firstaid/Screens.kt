@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kotlin.plus
 
 // Every fixed piece of interface text goes through tr(text) so it can be shown in Hindi.
 // Text that comes from the JSON data (situations, lessons, kit, quiz) is translated in the data instead.
@@ -48,6 +49,7 @@ internal fun HomeScreen(state: AppState) {
         HomeEntry(Screen.Emergency, "Review key emergency reminders.", "Emergency number {0}", EMERGENCY_NUMBER),
         HomeEntry(Screen.Sources, "Review references used by the educational content.", "{0} references", data.sources.size),
         HomeEntry(Screen.About, "Project purpose and safety disclaimer.", "Project information"),
+        HomeEntry(Screen.Settings, "Choose a light, dark or system default theme.", "Appearance"),
     )
     Page {
         PageTitle(tr("Be prepared to help"), tr("A simple offline-first guide to first-aid awareness."))
@@ -60,19 +62,19 @@ internal fun HomeScreen(state: AppState) {
             )
         }
         Card(
-            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF0F0)),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.appColors.emergencyContainer),
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier.fillMaxWidth(),
         ) {
             Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    IconGlyph(AppIcon.Emergency, Modifier.size(24.dp), EmergencyRed)
+                    IconGlyph(AppIcon.Emergency, Modifier.size(24.dp), EmergencyAccent)
                     Spacer(Modifier.width(8.dp))
                     Text(
                         tr("In an emergency"),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = EmergencyRed,
+                        color = EmergencyAccent,
                     )
                 }
                 Text(tr("Check scene safety. Get emergency help for life-threatening situations. Follow the emergency operator's instructions."))
@@ -368,7 +370,7 @@ internal fun SearchScreen(state: AppState) {
                 unfocusedBorderColor = CardBorder,
             ),
         )
-        OptIn(ExperimentalLayoutApi::class)
+        @OptIn(ExperimentalLayoutApi::class)
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -417,12 +419,12 @@ internal fun EmergencyScreen(state: AppState) {
     Page {
         PageTitle(tr("Emergency Help"), tr("Use emergency services immediately when a situation may be life-threatening."))
         Card(
-            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF0F0)),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.appColors.emergencyContainer),
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier.fillMaxWidth(),
         ) {
             Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(tr("India emergency number"), fontWeight = FontWeight.Bold, color = EmergencyRed)
+                Text(tr("India emergency number"), fontWeight = FontWeight.Bold, color = EmergencyAccent)
                 Text(EMERGENCY_NUMBER, style = MaterialTheme.typography.displayMedium, fontWeight = FontWeight.Bold, color = AppBlue)
                 Text(tr("Primary national emergency number for urgent ambulance, police and fire assistance."))
                 CallEmergencyButton()

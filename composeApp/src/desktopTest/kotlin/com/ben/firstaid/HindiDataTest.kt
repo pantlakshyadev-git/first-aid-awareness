@@ -148,6 +148,30 @@ class HindiDataTest {
     }
 
     @Test
+    fun every_kit_item_is_translated_into_hindi() {
+        for (en in english.kitItems) {
+            val hi = hindi.kitItem(en.id)!!
+            assertNotEquals(en.name, hi.name, en.id)
+            assertTrue(hasDevanagari(hi.name) && hasDevanagari(hi.purpose) && hasDevanagari(hi.what) && hasDevanagari(hi.details) && hasDevanagari(hi.use) && hasDevanagari(hi.precautions), en.id)
+        }
+    }
+
+    @Test
+    fun every_quiz_question_is_translated_into_hindi() {
+        for ((i, en) in english.quizQuestions.withIndex()) {
+            val hi = hindi.quizQuestions[i]
+            assertNotEquals(en.question, hi.question, "quiz index $i")
+            assertTrue(hasDevanagari(hi.question), "quiz index $i question")
+            assertTrue(hasDevanagari(hi.explanation), "quiz index $i explanation")
+            assertEquals(en.options.size, hi.options.size, "quiz index $i options count")
+            for (opt in hi.options) {
+                if (opt.all { it.isDigit() || it.isWhitespace() || it == '(' || it == ')' }) continue
+                assertTrue(hasDevanagari(opt), "quiz index $i option $opt")
+            }
+        }
+    }
+
+    @Test
     fun hindi_language_file_loads_even_if_only_part_is_translated() {
         // The app must keep working while lessons, kit items and quiz are still English.
         val partial = english.withTranslation(Translation(situations = translation.situations))

@@ -1,6 +1,5 @@
 package com.ben.firstaid
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -22,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
@@ -123,8 +121,8 @@ private fun QuizQuestionPage(state: AppState, session: QuizSession) {
                     }
                     if (session.answered) {
                         val correct = session.selected == question.answer
-                        val containerColor = if (correct) Color(0xFFE6F4EA) else Color(0xFFFCE8E6)
-                        val textColor = if (correct) Color(0xFF137333) else Color(0xFFC5221F)
+                        val containerColor = if (correct) MaterialTheme.appColors.correctContainer else MaterialTheme.appColors.wrongContainer
+                        val textColor = if (correct) MaterialTheme.appColors.correctText else MaterialTheme.appColors.wrongText
                         Card(
                             colors = CardDefaults.cardColors(containerColor = containerColor),
                             shape = RoundedCornerShape(12.dp),

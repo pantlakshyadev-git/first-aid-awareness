@@ -17,10 +17,6 @@ import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 
-// Icons are drawn from simple shapes on a 24 x 24 grid, so they need no image files and no icon
-// library, look the same on every platform and take whatever colour they are given.
-// The shapes below were generated from one list of coordinates (also used for the preview picture).
-
 internal enum class AppIcon {
     Home,
     Guide,
@@ -31,6 +27,7 @@ internal enum class AppIcon {
     Emergency,
     Sources,
     About,
+    Settings,
     Burns,
     Bleeding,
     Choking,
@@ -117,6 +114,12 @@ internal fun iconOps(icon: AppIcon): List<IconOp> = when (icon) {
         CircleOp(4.6f, 17.6f, 2.3f, true),
         CircleOp(6.4f, 19.4f, 2.3f, true),
     )
+    // Three sliders: a line with a knob on it (the same on every platform, no image file needed).
+    AppIcon.Settings -> listOf(
+        LineOp(3f, 6f, 6f, 6f), CircleOp(8.5f, 6f, 2.5f, false), LineOp(11f, 6f, 21f, 6f),
+        LineOp(3f, 12f, 12f, 12f), CircleOp(14.5f, 12f, 2.5f, false), LineOp(17f, 12f, 21f, 12f),
+        LineOp(3f, 18f, 4f, 18f), CircleOp(6.5f, 18f, 2.5f, false), LineOp(9f, 18f, 21f, 18f),
+    )
     AppIcon.HeartAttack -> listOf(
         PathOp(listOf(Cmd('M', 12f, 21f), Cmd('C', 5f, 15f, 2f, 11f, 2f, 7.5f), Cmd('C', 2f, 4.5f, 4.5f, 3f, 7f, 3f), Cmd('C', 9f, 3f, 11f, 4f, 12f, 6f), Cmd('C', 13f, 4f, 15f, 3f, 17f, 3f), Cmd('C', 19.5f, 3f, 22f, 4.5f, 22f, 7.5f), Cmd('C', 22f, 11f, 19f, 15f, 12f, 21f), Cmd('Z')), false),
     )
@@ -196,10 +199,6 @@ private fun DrawScope.drawOp(op: IconOp, tint: Color, u: Float) {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Which icon belongs to which screen, situation or lesson
-// ---------------------------------------------------------------------------
-
 internal fun screenIcon(screen: Screen): AppIcon = when (screen.section) {
     Screen.Home -> AppIcon.Home
     Screen.Guide -> AppIcon.Guide
@@ -210,6 +209,7 @@ internal fun screenIcon(screen: Screen): AppIcon = when (screen.section) {
     Screen.Emergency -> AppIcon.Emergency
     Screen.Sources -> AppIcon.Sources
     Screen.About -> AppIcon.About
+    Screen.Settings -> AppIcon.Settings
     else -> AppIcon.Guide
 }
 

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:label="First Aid Awareness"
-        android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:theme="@style/Theme.FirstAid"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:icon="@mipmap/ic_launcher"

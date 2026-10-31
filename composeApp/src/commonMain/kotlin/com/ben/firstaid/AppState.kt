@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.jvm.JvmName
+import kotlin.plus
 
 internal enum class Screen(val title: String) {
     Home("Home"),
@@ -20,6 +21,7 @@ internal enum class Screen(val title: String) {
     Emergency("Emergency Help"),
     Sources("Sources"),
     About("About"),
+    Settings("Settings"),
 }
 
 /** The top-level screen a detail screen belongs to (used to highlight navigation). */

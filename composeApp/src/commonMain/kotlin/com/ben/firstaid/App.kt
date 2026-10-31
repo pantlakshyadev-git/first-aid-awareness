@@ -1,6 +1,5 @@
 package com.ben.firstaid
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -27,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
@@ -73,7 +71,11 @@ fun App() {
     var load by remember { mutableStateOf<LoadState>(LoadState.Loading) }
     LaunchedEffect(Unit) { load = loadAndValidate() }
 
-    AppTheme {
+    // The theme is chosen before the data loads, so even the loading/error screen uses it.
+    val preferenceStore = rememberPreferenceStore()
+    val themeController = remember(preferenceStore) { ThemeController(preferenceStore) }
+
+    AppTheme(themeController.mode) {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             when (val current = load) {
                 is LoadState.Loading -> StartupMessage(loading = true, problems = emptyList())
@@ -81,7 +83,7 @@ fun App() {
                 is LoadState.Ready -> {
                     val state = remember(current.data) { AppState(current.data, current.hindi) }
                     CompositionLocalProvider(LocalLanguage provides state.language) {
-                        MainLayout(state)
+                        MainLayout(state, themeController)
                     }
                 }
             }
@@ -124,7 +126,7 @@ private fun StartupMessage(loading: Boolean, problems: List<String>) {
                 Text(
                     "In an emergency, call $EMERGENCY_NUMBER.",
                     fontWeight = FontWeight.Bold,
-                    color = EmergencyRed,
+                    color = EmergencyAccent,
                 )
             }
         }
@@ -132,7 +134,7 @@ private fun StartupMessage(loading: Boolean, problems: List<String>) {
 }
 
 @Composable
-private fun MainLayout(state: AppState) {
+private fun MainLayout(state: AppState, themeController: ThemeController) {
     // Android system Back. Desktop and iOS use the Back button in the top bar.
     PlatformBackHandler(enabled = state.canGoBack) { state.back() }
 
@@ -150,7 +152,7 @@ private fun MainLayout(state: AppState) {
                     Modifier.windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom))
                 }
                 Box(Modifier.weight(1f).fillMaxWidth().then(contentModifier)) {
-                    ScreenHost(state)
+                    ScreenHost(state, themeController)
                 }
                 if (compact) BottomNav(state)
             }
@@ -159,7 +161,7 @@ private fun MainLayout(state: AppState) {
 }
 
 @Composable
-private fun ScreenHost(state: AppState) {
+private fun ScreenHost(state: AppState, themeController: ThemeController) {
     // key(...) gives every screen/item a fresh scroll position.
     key(state.current, state.situationId, state.lessonId, state.kitId) {
         when (state.current) {
@@ -176,13 +178,14 @@ private fun ScreenHost(state: AppState) {
             Screen.Emergency -> EmergencyScreen(state)
             Screen.Sources -> SourcesScreen(state)
             Screen.About -> AboutScreen()
+            Screen.Settings -> SettingsScreen(themeController.mode, themeController::select)
         }
     }
 }
 
 @Composable
 private fun TopBar(state: AppState) {
-    Surface(color = AppBlue, contentColor = Color.White, shadowElevation = 3.dp) {
+    Surface(color = MaterialTheme.appColors.topBar, contentColor = Color.White, shadowElevation = 3.dp) {
         Row(
             Modifier
                 .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top))
@@ -219,7 +222,7 @@ private fun TopBar(state: AppState) {
                     )
                     Text(
                         tr("LEARN  ·  ASSIST  ·  ESCALATE"),
-                        color = Color(0xFFD7EEF3),
+                        color = MaterialTheme.appColors.onTopBarMuted,
                         style = MaterialTheme.typography.labelSmall,
                     )
                 } else {
@@ -269,12 +272,12 @@ private fun TopBar(state: AppState) {
 
 private val sideScreens = listOf(
     Screen.Home, Screen.Guide, Screen.Learn, Screen.Kit, Screen.Quiz,
-    Screen.Search, Screen.Emergency, Screen.Sources, Screen.About,
+    Screen.Search, Screen.Emergency, Screen.Sources, Screen.About, Screen.Settings,
 )
 
 @Composable
 private fun SideNav(state: AppState) {
-    Surface(color = Color(0xFFF0F6F7), modifier = Modifier.width(220.dp).fillMaxHeight()) {
+    Surface(color = MaterialTheme.appColors.sideNav, modifier = Modifier.width(220.dp).fillMaxHeight()) {
         Column(
             Modifier
                 .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Vertical))
@@ -321,7 +324,7 @@ private val bottomItems = listOf(
 @Composable
 private fun BottomNav(state: AppState) {
     NavigationBar(
-        containerColor = Color.White,
+        containerColor = MaterialTheme.appColors.navBar,
         tonalElevation = 6.dp,
     ) {
         bottomItems.forEach { (screen, label) ->
@@ -342,8 +345,8 @@ private fun BottomNav(state: AppState) {
                     selectedIconColor = AppBlue,
                     selectedTextColor = AppBlue,
                     indicatorColor = PrimaryContainerBlue,
-                    unselectedIconColor = Color(0xFF64748B),
-                    unselectedTextColor = Color(0xFF64748B),
+                    unselectedIconColor = MaterialTheme.appColors.navUnselected,
+                    unselectedTextColor = MaterialTheme.appColors.navUnselected,
                 )
             )
         }
